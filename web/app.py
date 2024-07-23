@@ -1,3 +1,5 @@
+from datetime import date
+
 from fastapi import FastAPI
 import uvicorn
 
@@ -11,6 +13,12 @@ app = FastAPI()
 async def root():
     show_data = AllData.read()
     return {"message": show_data}
+
+
+@app.get("/company/{code}/dailyk")
+async def daily_k(start: date, end: date) -> list[daily_k]:
+
+    return
 
 
 def run():

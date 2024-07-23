@@ -1,4 +1,4 @@
 from .data import Data
 
-AllData=Data()
-__all__=[AllData]
+AllData = Data()
+__all__ = [AllData]

@@ -1,3 +1,3 @@
 from .demo import writer
 
-__all__=[writer]
+__all__ = [writer]
