@@ -1,6 +1,7 @@
 import sys
 import time
 from datetime import datetime, timedelta
+import schedule
 
 # 添加你的模块路径
 sys.path.append(".")
@@ -12,8 +13,8 @@ from module.crawler import get_daily_k_data
 def fetch_stock_data():
     # 获取当前日期
     end_date = datetime.now().strftime("%Y-%m-%d")
-    # 计算180天前的日期，观察到日k线大概180天左右
-    start_date = (datetime.now() - timedelta(days=180)).strftime("%Y-%m-%d")
+    # 计算90天前的日期，观察到日k线大概90天左右
+    start_date = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
 
     stock_code = "sh.600000"
 
@@ -27,7 +28,10 @@ def fetch_stock_data():
 
 
 if __name__ == "__main__":
+    # 安排任务每天运行一次，可以设置具体时间，例如每天的9:00
+    schedule.every().day.at("05:00").do(fetch_stock_data)
+
+    # 持续运行调度器
     while True:
-        fetch_stock_data()
-        # 等待30分钟（1800秒）
-        time.sleep(1800)
+        schedule.run_pending()
+        time.sleep(1)

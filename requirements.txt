@@ -1,2 +1,4 @@
 fastapi
 baostock
+schedule
+pydantic
