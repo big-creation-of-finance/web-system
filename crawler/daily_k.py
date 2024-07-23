@@ -2,19 +2,8 @@
 import baostock as bs
 from dataclasses import dataclass
 from datetime import datetime
+from common.daily_k_StockData import *
 
-
-@dataclass
-class StockData:
-    date: datetime
-    code: str
-    open: float
-    high: float
-    low: float
-    close: float
-    volume: int
-    amount: float
-    # 可以继续添加其他字段
 
 
 def get_daily_k_data(code, start_date, end_date):
@@ -54,7 +43,7 @@ def get_daily_k_data(code, start_date, end_date):
             "volume": int(record[6]),
             "amount": float(record[7]),
         }
-        stock_data = StockData(**stock_data_kwargs)
+        stock_data = daliy_k_StockData(**stock_data_kwargs)
         stock_data_list.append(stock_data)
 
     bs.logout()
