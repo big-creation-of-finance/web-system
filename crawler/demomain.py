@@ -1,5 +1,6 @@
 # main.py
-from daily_k import get_daily_k_data
+from .daily_k import get_daily_k_data
+
 
 def main():
     # stock_code = input("Enter the stock code (e.g., 'sh.600000'): ")
@@ -15,7 +16,8 @@ def main():
     if daily_k_data is not None:
         for stock in daily_k_data:
             print(
-                f"Date: {stock.date}, Code: {stock.code}, Open: {stock.open}, Low: {stock.low}"
+                f"Date: {stock.date}, Code: {stock.code}, Open: {
+                    stock.open}, Low: {stock.low}"
             )
     else:
         print("No stock data available.")

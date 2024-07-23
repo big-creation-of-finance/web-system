@@ -1,10 +1,11 @@
 # daily_k.py
-import baostock as bs
 from dataclasses import dataclass
 from datetime import datetime
 
+import baostock as bs
+
 # 添加上级目录
-from commons.datatype.daily_k_StockData import daily_k_StockData
+from ..commons.datatype.daily_k_StockData import daily_k_StockData
 
 
 def get_daily_k_data(code, start_date, end_date):
