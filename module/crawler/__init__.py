@@ -1,3 +1,3 @@
-from .daily_k import get_daily_k_data
+from .cron import cron
 
-__all__ = [get_daily_k_data]
+__all__ = [cron]

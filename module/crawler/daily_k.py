@@ -1,13 +1,29 @@
-# daily_k.py
-# from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import baostock as bs
 
 from ..commons.datatype import daily_k_StockData
 
 
-def get_daily_k_data(code, start_date, end_date):
+def fetch_stock_data():
+    # 获取当前日期
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    # 计算90天前的日期，观察到日k线大概90天左右
+    start_date = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+
+    stock_code = "sh.600000"
+
+    # 输入股票代码，开始时间，结束时间引用
+    daily_k_data = _get_daily_k_data(stock_code, start_date, end_date)
+    if daily_k_data is not None:
+        for stock in daily_k_data:
+            print(stock.date, stock.code, stock.open, stock.low)
+    else:
+        print("No stock data available.")
+
+
+def _get_daily_k_data(code, start_date, end_date):
+    # _开头的变量意为不导出
     lg = bs.login()
     if lg.error_code != "0":
         return None
