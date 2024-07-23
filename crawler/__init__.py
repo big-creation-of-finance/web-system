@@ -1,3 +1,3 @@
-from .demo import writer
+from .demomain import main
 
-__all__ = [writer]
+__all__ = [main]
