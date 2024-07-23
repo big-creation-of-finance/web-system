@@ -2,8 +2,9 @@
 import baostock as bs
 from dataclasses import dataclass
 from datetime import datetime
-from common.daily_k_StockData import *
 
+# 添加上级目录
+from commons.datatype.daily_k_StockData import daily_k_StockData
 
 
 def get_daily_k_data(code, start_date, end_date):
@@ -43,7 +44,7 @@ def get_daily_k_data(code, start_date, end_date):
             "volume": int(record[6]),
             "amount": float(record[7]),
         }
-        stock_data = daliy_k_StockData(**stock_data_kwargs)
+        stock_data = daily_k_StockData(**stock_data_kwargs)
         stock_data_list.append(stock_data)
 
     bs.logout()

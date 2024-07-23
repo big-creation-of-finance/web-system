@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 @dataclass
-class daliy_k_StockData:
+class daily_k_StockData:
     date: datetime
     code: str
     open: float

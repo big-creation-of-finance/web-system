@@ -1,7 +1,6 @@
 # main.py
 from daily_k import get_daily_k_data
 
-
 def main():
     # stock_code = input("Enter the stock code (e.g., 'sh.600000'): ")
     # start_date = input("Enter the start date (YYYY-MM-DD): ")
