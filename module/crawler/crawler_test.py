@@ -1,5 +1,6 @@
 # main.py
-from .daily_k import get_daily_k_data
+import sys
+sys.path.append('.')
 
 
 def main():
@@ -24,4 +25,5 @@ def main():
 
 
 if __name__ == "__main__":
+    from module.crawler import get_daily_k_data
     main()

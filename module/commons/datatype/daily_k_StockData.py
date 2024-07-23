@@ -1,10 +1,11 @@
 # common/datatype/stock_data.py
-from dataclasses import dataclass
+# from dataclasses import dataclass
+from pydantic import BaseModel
 from datetime import datetime
 
 
-@dataclass
-class daily_k_StockData:
+# @dataclass
+class daily_k_StockData(BaseModel):
     date: datetime
     code: str
     open: float
