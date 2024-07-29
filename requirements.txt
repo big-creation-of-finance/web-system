@@ -2,3 +2,4 @@ fastapi
 baostock
 schedule
 pydantic
+sqlalchemy

@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 import baostock as bs
 
-from ..commons.datatype import daily_k_StockData
+from ..commons.datatype import daily_k
 
 
 def fetch_stock_data():
@@ -60,7 +60,7 @@ def _get_daily_k_data(code, start_date, end_date):
             "volume": int(record[6]),
             "amount": float(record[7]),
         }
-        stock_data = daily_k_StockData(**stock_data_kwargs)
+        stock_data = daily_k(**stock_data_kwargs)
         stock_data_list.append(stock_data)
 
     bs.logout()

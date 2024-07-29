@@ -1,24 +1,28 @@
-from datetime import date
-
-from fastapi import FastAPI
 import uvicorn
+from fastapi import Depends, FastAPI, HTTPException, FastAPI
+from sqlalchemy.orm import Session
 
-from ..commons.datatype import daily_k_StockData
+from ..commons.datatype.daily_k import daily_k_StockData, get_daily_k
+from ..commons.stock.stock import SessionLocal, engine, Base
 
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
-# 简易 web app 演示，返回数据库中一个数据
-# @app.get("/")
-# async def root():
-#     show_data = AllData.read()
-#     return {"message": show_data}
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 
-@app.get("/company/{code}/dailyk")
-async def daily_k(start: date, end: date) -> list[daily_k_StockData]:
-
-    return
+@app.get("/company/{code}/dailyk", response_model=daily_k_StockData)
+async def daily_k(code: str, db: Session = Depends(get_db)):
+    db_daily_k = get_daily_k(db, code)
+    if db_daily_k:
+        return db_daily_k
+    raise HTTPException(status_code=404, detail='Not Found')
 
 
 def run():
