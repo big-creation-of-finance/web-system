@@ -15,11 +15,7 @@ def fetch_stock_data():
 
     # 输入股票代码，开始时间，结束时间引用
     daily_k_data = _get_daily_k_data(stock_code, start_date, end_date)
-    if daily_k_data is not None:
-        for stock in daily_k_data:
-            print(stock.date, stock.code, stock.open, stock.low)
-    else:
-        print("No stock data available.")
+    return daily_k_data
 
 
 def _get_daily_k_data(code, start_date, end_date):

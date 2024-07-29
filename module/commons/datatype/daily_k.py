@@ -43,10 +43,7 @@ def get_daily_k(db: Session, code: str) -> dailyk | None:
 
 
 def insert_daily_k(db: Session, data: daily_k_StockData):
-    db_user = dailyk(
-        **data.dict(exclude={'date'}),
-        date=str(data.date)
-    )
+    db_user = dailyk(**data.dict(exclude={"date"}), date=str(data.date))
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
