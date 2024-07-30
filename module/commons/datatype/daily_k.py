@@ -42,7 +42,7 @@ def get_daily_k(db: Session, code: str) -> dailyk | None:
     return db.query(dailyk).filter(dailyk.code == code).first()
 
 
-def insert_daily_k(db: Session, data: daily_k_StockData):
+def insert_daily_k(db: Session, data: daily_k_StockData) -> dailyk:
     db_user = dailyk(**data.dict(exclude={"date"}), date=str(data.date))
     db.add(db_user)
     db.commit()
