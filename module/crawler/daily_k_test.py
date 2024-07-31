@@ -10,17 +10,18 @@ from module.commons.datatype.daily_k import daily_k_StockData
 from module.commons.datatype.daily_k import insert_daily_k
 
 
-def fetch_stock_data():
+def fetch_stock_data(stock_codes):
 
     # 获取当前日期
-    end_date = "2022-07-14"
-    start_date = "2022-04-30"
+    end_date = datetime.now().strftime("%Y-%m-%d")
+    start_date = "2016-01-30"
+    stock_data_list = []
+    for code in stock_codes:
+        daily_k_data = _get_daily_k_data(code, start_date, end_date)
+        if daily_k_data:
+            stock_data_list.extend(daily_k_data)
 
-    stock_code = "sh.600000"
-
-    # 输入股票代码，开始时间，结束时间引用
-    daily_k_data = _get_daily_k_data(stock_code, start_date, end_date)
-    return daily_k_data
+    return stock_data_list
 
 
 def _get_daily_k_data(code, start_date, end_date):
@@ -75,9 +76,14 @@ def daily_k_db():
         Base.metadata.create_all(bind=engine)
     except Exception as e:
         print(f"An error occurred while creating database tables: {e}")
-
+    stock_codes = [
+        "sh.600000",
+        "sz.000001",
+        "sz.000651",
+        "sh.600690",
+    ]  # 示例股票代码列表
     # 抓取数据并标准化
-    daily_k_data_list = fetch_stock_data()
+    daily_k_data_list = fetch_stock_data(stock_codes)
 
     for data_dict in daily_k_data_list:
         try:
