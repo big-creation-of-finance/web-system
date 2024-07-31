@@ -1,5 +1,5 @@
-1. 合并 module\commons\datatype\daily_k_db.py 到 module\crawler\daily_k.py
-2. print 读取测试等代码应为 _test.py
+~1. 合并 module\commons\datatype\daily_k_db.py 到 module\crawler\daily_k.py
+~2. print 读取测试等代码应为 _test.py
 3. 考虑增加 module\commons\datatype\daily_k.py 中 class dailyk 的读写工具函数
-4. module\crawler\daily_k.py 中 def fetch_stock_data() 返回值类型明确化
-5. module\crawler\daily_k.py 中 def _get_daily_k_data() 输入参数以及返回值类型明确化 
+~4. module\crawler\daily_k.py 中 def fetch_stock_data() 返回值类型明确化
+~5. module\crawler\daily_k.py 中 def _get_daily_k_data() 输入参数以及返回值类型明确化 

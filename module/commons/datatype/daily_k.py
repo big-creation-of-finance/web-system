@@ -42,7 +42,29 @@ def get_daily_k(db: Session, code: str) -> dailyk | None:
     return db.query(dailyk).filter(dailyk.code == code).first()
 
 
-def insert_daily_k(db: Session, data: daily_k_StockData) -> dailyk:
+# def insert_daily_k(db: Session, data: daily_k_StockData) -> dailyk:
+#     db_user = dailyk(**data.dict(exclude={"date"}), date=str(data.date))
+#     db.add(db_user)
+#     db.commit()
+#     db.refresh(db_user)
+#     return db_user
+
+
+def insert_daily_k(db: Session, data: daily_k_StockData) -> dailyk | None:
+    # 检查数据库中是否已经存在该记录
+    existing_record = (
+        db.query(dailyk)
+        .filter(
+            dailyk.date == str(data.date),  # 确保date是字符串形式
+            dailyk.code == data.code,
+        )
+        .first()
+    )
+
+    if existing_record:
+        return None
+
+    # 如果记录不存在，则创建新记录并插入数据库
     db_user = dailyk(**data.dict(exclude={"date"}), date=str(data.date))
     db.add(db_user)
     db.commit()

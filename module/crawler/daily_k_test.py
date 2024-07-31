@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from typing import List
 
 
 import baostock as bs
@@ -11,11 +10,11 @@ from module.commons.datatype.daily_k import daily_k_StockData
 from module.commons.datatype.daily_k import insert_daily_k
 
 
-def fetch_stock_data() -> List[daily_k_StockData]:
+def fetch_stock_data():
 
     # 获取当前日期
-    end_date = datetime.now().strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+    end_date = "2022-07-14"
+    start_date = "2022-04-30"
 
     stock_code = "sh.600000"
 
@@ -24,14 +23,7 @@ def fetch_stock_data() -> List[daily_k_StockData]:
     return daily_k_data
 
 
-"""
-code类型为sh.xxxxxx或者sz.xxxxxx
-"""
-
-
-def _get_daily_k_data(
-    code: str, start_date: str, end_date: str
-) -> List[daily_k_StockData]:
+def _get_daily_k_data(code, start_date, end_date):
     # _开头的变量意为不导出
     lg = bs.login()
     if lg.error_code != "0":
